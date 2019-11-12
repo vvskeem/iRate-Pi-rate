@@ -1,0 +1,184 @@
+<!-- 
+    Create homepage with tabs of each genre button avaiable 
+
+    Once a genre is selected, gather genre array to get a list of movies
+    Also gather revelvant gifs
+
+    Display first movie in the array with movie poster, title, year released & trailer (comments???)
+
+    Add voting option for the user to vote if they like it or not
+    Showcase live voting results once voted
+
+    Once user has voted the vote is submitted & saved then next movie in the array is showcased 
+    Create delay before new movie is showcased??
+
+-->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iRate</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation.min.css"
+        integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg=="
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="iratetemp.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <div id="title">
+            <H1>iRate Pi-rate</H1>
+        </div>
+
+        <!-- these movie genres are placed in buttons and on click functions will send info to javascript to import related API's -->
+
+        <!--Genre Id were seperated by numbers provided by Websites Documenation-->
+        <div class="movieGenres">
+            <button type="button" class="btn btn-primary btn-dark btn-lg genre custom" genre_id="35">Comedy</button>
+            </Button>
+            <button type="button" class="btn btn-primary btn-dark btn-lg genre custom" genre_id="28">Action</button>
+            <button type="button" class="btn btn-primary btn-dark btn-lg genre custom" genre_id="27">Horror</button>
+            <button type="button" class="btn btn-primary btn-dark btn-lg genre custom" genre_id="10749">Romance</button>
+            <button type="button" class="btn btn-primary btn-dark btn-lg genre custom"
+                genre_id="99">Documentary</button>
+            <button type="button" class="btn btn-primary btn-dark btn-lg genre custom" genre_id="10752">War</button>
+            <button type="button" class="btn btn-primary btn-dark btn-lg genre custom" genre_id="16">Animaition</button>
+            <button type="button" class="btn btn-primary btn-dark btn-lg genre custom" genre_id="18">Drama</button>
+            <button type="button" class="btn btn-primary btn-dark btn-lg genre custom" genre_id="53">Thriler</button>
+        </div>
+    </header>
+    <div class="fluid_container">
+        <div class="row">
+
+
+            <!-- This div will generate Gifts from the clicked genre button -->
+            <div id="gif" class="col-4">
+
+            </div>
+            <section id="carousel" class="col-4">
+                <div id="movieInput">
+
+                    <!--static Carosel Movie Slide/ gets emptied upon click/ bootstrap element-->
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="imageSlide"
+                                    src="https://images-na.ssl-images-amazon.com/images/I/71nsvxFpSTL._SY606_.jpg"
+                                    class="d-block w-100" alt="war">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="imageSlide"
+                                    src="https://images-na.ssl-images-amazon.com/images/I/71rNJQ2g-EL._SY606_.jpg"" class="
+                                    d-block w-100" alt="">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="imageSlide"
+                                    src="https://images-na.ssl-images-amazon.com/images/I/71niXI3lxlL._SY679_.jpg"
+                                    class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="imageSlide"
+                                    src="https://reelmovieposters.com.au/wp-content/uploads/2019/06/DSC_1154-copy.jpg"
+                                    class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="imageSlide"
+                                    src="https://images-na.ssl-images-amazon.com/images/I/71niXI3lxlL._SY679_.jpg"
+                                    class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="imageSlide"
+                                    src="https://geeksup.com.my/1008-large_default/star-wars-the-last-jedi-movie-poster.jpg"
+                                    class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        <!-- when user selects genre, a on click function will record and clear the above div. 
+THen will use jQuery to inport Api info to display 5 movies per genre -->
+                    </div>
+
+                    <div id="newClickMovie">
+
+
+
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </section>
+
+            <!-- This div will generate Gifts from the clicked genre button -->
+            <div class="col-4" id="gif2">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js"
+        integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA=="
+        crossorigin="anonymous"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBdF-HP5LLhf2Vunr18OMHRQTIgijzrmPE",
+            authDomain: "irate-pi-rate.firebaseapp.com",
+            databaseURL: "https://irate-pi-rate.firebaseio.com",
+            projectId: "irate-pi-rate",
+            storageBucket: "irate-pi-rate.appspot.com",
+            messagingSenderId: "172011743615",
+            appId: "1:172011743615:web:b16bca42908fe2b4f7d24a",
+            measurementId: "G-HJ72B4J392"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="irate.js"></script>
+
+</body>
+
+</html>
